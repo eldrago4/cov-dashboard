@@ -21,22 +21,27 @@ const locationList = [
     { value: "SK", label: "Saskatchewan" },
     { value: "YT", label: "Yukon" },
   ];
+const [activeLocation, setActiveLocation] = useState("AB");
+const [lastUpdated, setlastedUpdated] = useState("");
 //return statement goes below this
-  return (
+return (
     <div className="App">
       <h1>COVID 19 Dashboard </h1>
-      <div className="dashboard-container">
-        <div className="dashboard-menu">
-            <Select>
-                options={locationList}
-                className="dashboard-select"
-            </Select>
-            <p className="update-date"> Last Updated : </p>
-        </div>
+       <div className="dashboard-container"></div>
+       <div className="dashboard-menu">
+           <Select 
+            options={locationList}
+            className="dashboard-select"
+            onChange={ (selectedOption) => setActiveLocation(selectedOption.value) }
+            defaultValue={ locationList.filter((options) => options.value === activeLocation) }
+            >
+
+           </Select>
+           <p className="update-date"> Last Updated : {lastUpdated}</p>
         <div className="dashboard-summary"></div>
       </div>
     </div>
-  );
-}
+);
 
-export default App;
+export default App
+};
